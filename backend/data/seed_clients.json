@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Marcus Johnson",
+    "days_ago": 8,
+    "county": "Fulton County, GA",
+    "conviction_type": "non-violent drug",
+    "age": 34,
+    "is_veteran": false,
+    "has_dependents": true
+  },
+  {
+    "name": "Darnell Washington",
+    "days_ago": 19,
+    "county": "Fulton County, GA",
+    "conviction_type": "property",
+    "age": 28,
+    "is_veteran": true,
+    "has_dependents": false
+  },
+  {
+    "name": "Teresa Reyes",
+    "days_ago": 30,
+    "county": "Fulton County, GA",
+    "conviction_type": "non-violent drug",
+    "age": 41,
+    "is_veteran": false,
+    "has_dependents": true
+  },
+  {
+    "name": "James Okafor",
+    "days_ago": 1,
+    "county": "Fulton County, GA",
+    "conviction_type": "other",
+    "age": 52,
+    "is_veteran": false,
+    "has_dependents": false
+  },
+  {
+    "name": "Calvin Brooks",
+    "days_ago": 14,
+    "county": "Fulton County, GA",
+    "conviction_type": "property",
+    "age": 23,
+    "is_veteran": false,
+    "has_dependents": false
+  }
+]

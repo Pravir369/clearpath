@@ -1,0 +1,65 @@
+[
+  {
+    "name": "SNAP",
+    "deadline_days": 30,
+    "eligible_convictions": [
+      "non-violent drug",
+      "property",
+      "other"
+    ],
+    "veterans_only": false
+  },
+  {
+    "name": "Georgia Medicaid",
+    "deadline_days": 30,
+    "eligible_convictions": [
+      "non-violent drug",
+      "violent",
+      "property",
+      "other"
+    ],
+    "veterans_only": false
+  },
+  {
+    "name": "WIOA Workforce Training",
+    "deadline_days": 30,
+    "eligible_convictions": [
+      "non-violent drug",
+      "violent",
+      "property",
+      "other"
+    ],
+    "veterans_only": false
+  },
+  {
+    "name": "VA Reentry Benefits",
+    "deadline_days": 60,
+    "eligible_convictions": [
+      "non-violent drug",
+      "violent",
+      "property",
+      "other"
+    ],
+    "veterans_only": true
+  },
+  {
+    "name": "GA DHS Reentry Housing",
+    "deadline_days": 14,
+    "eligible_convictions": [
+      "non-violent drug",
+      "property",
+      "other"
+    ],
+    "veterans_only": false
+  },
+  {
+    "name": "GA Legal Services",
+    "deadline_days": 90,
+    "eligible_convictions": [
+      "non-violent drug",
+      "property",
+      "other"
+    ],
+    "veterans_only": false
+  }
+]

@@ -5,8 +5,8 @@
 ---
 
 ## CURRENT TASK
-**Stage 1 — Task F-7**
-Set up .gitignore and commit to GitHub.
+**Stages 1-7 Complete — Ready for Demo**
+All skeleton, database, core logic, AI layer, API routes, frontend, and polish done. Stage 8 (Google Auth) not started.
 
 ---
 
@@ -178,55 +178,55 @@ GOOGLE_CLIENT_SECRET=
 - [x] F-4: Initialize React + Vite + Tailwind ✅
 - [x] F-5: Write frontend/src/lib/api.js fetch helpers ✅
 - [x] F-6: Confirm frontend calls backend /health successfully ✅
-- [ ] F-7: Set up .gitignore and commit to GitHub ← CURRENT
+- [x] F-7: Set up .gitignore and commit to GitHub ✅
 
 ### STAGE 2 — DATABASE
-- [ ] DB-1: Write database.py (SQLAlchemy engine + session + get_db)
-- [ ] DB-2: Write db_models.py (Officer + Client ORM tables, NO behavioral fields)
-- [ ] DB-3: Init Alembic, generate migration, run alembic upgrade head
-- [ ] DB-4: Write Pydantic schemas (Client, BenefitWindow, CatchTwoStatus, ActionItem, ClientAnalysis)
-- [ ] DB-5: Create seed_clients.json and benefits_programs.json
-- [ ] DB-6: Write scripts/seed.py with dynamic dates
+- [x] DB-1: Write database.py (SQLAlchemy engine + session + get_db) ✅
+- [x] DB-2: Write db_models.py (Officer + Client ORM tables, NO behavioral fields) ✅
+- [x] DB-3: Init Alembic, generate migration, run alembic upgrade head ✅
+- [x] DB-4: Write Pydantic schemas (Client, BenefitWindow, CatchTwoStatus, ActionItem, ClientAnalysis) ✅
+- [x] DB-5: Create seed_clients.json and benefits_programs.json ✅
+- [x] DB-6: Write scripts/seed.py with dynamic dates ✅
 
 ### STAGE 3 — CORE LOGIC
-- [ ] CORE-1: Write get_eligible_benefits(client) in benefits_service.py
-- [ ] CORE-2: Write build_client_summary(client, benefits) in benefits_service.py
-- [ ] CORE-3: Write get_catch_two_status(client) in deadline_service.py
-- [ ] CORE-4: Write analyze_client_no_ai(client) orchestrator
-- [ ] CORE-5: Manual end-to-end test in Python shell
+- [x] CORE-1: Write get_eligible_benefits(client) in benefits_service.py ✅
+- [x] CORE-2: Write build_client_summary(client, benefits) in benefits_service.py ✅
+- [x] CORE-3: Write get_catch_two_status(client) in deadline_service.py ✅
+- [x] CORE-4: Write analyze_client_no_ai(client) orchestrator ✅
+- [x] CORE-5: Manual end-to-end test in Python shell ✅
 
 ### STAGE 4 — AI LAYER
-- [ ] AI-1: Write groq_service.py wrapper
-- [ ] AI-2: Write backend/prompts/intake_analysis.txt system prompt
-- [ ] AI-3: Write generate_intake_analysis() in benefits_service.py
-- [ ] AI-4: Write full analyze_client(client_id, db) orchestrator
-- [ ] AI-5: End-to-end AI test in Python shell
+- [x] AI-1: Write groq_service.py wrapper ✅
+- [x] AI-2: Write backend/prompts/intake_analysis.txt system prompt ✅
+- [x] AI-3: Write generate_intake_analysis() in benefits_service.py ✅
+- [x] AI-4: Write full analyze_client(client_id, db) orchestrator ✅
+- [x] AI-5: End-to-end AI test in Python shell ✅
 
 ### STAGE 5 — API ROUTES
-- [ ] API-1: Write routes/clients.py (GET list, GET detail, POST create)
-- [ ] API-2: Write routes/analyze.py (POST analyze/{id})
-- [ ] API-3: Mount both routers in main.py
-- [ ] API-4: Smoke test all endpoints via curl
+- [x] API-1: Write routes/clients.py (GET list, GET detail, POST create) ✅
+- [x] API-2: Write routes/analyze.py (POST analyze/{id}) ✅
+- [x] API-3: Mount both routers in main.py ✅
+- [x] API-4: Smoke test all endpoints via curl ✅
 
 ### STAGE 6 — FRONTEND
-- [ ] UI-1: Set up React Router in App.jsx
-- [ ] UI-2: Build Layout.jsx with navbar
-- [ ] UI-3: Build DeadlineBadge.jsx component
-- [ ] UI-4: Build CatchTwoAlert.jsx component
-- [ ] UI-5: Build BenefitsPanel.jsx component
-- [ ] UI-6: Build ActionItems.jsx component
-- [ ] UI-7: Build ClientCard.jsx component
-- [ ] UI-8: Build Dashboard.jsx page
-- [ ] UI-9: Build ClientDetail.jsx page
-- [ ] UI-10: Build Login.jsx stub
+- [x] UI-1: Set up React Router in App.jsx ✅
+- [x] UI-2: Build Layout.jsx with navbar ✅
+- [x] UI-3: Build DeadlineBadge.jsx component ✅
+- [x] UI-4: Build CatchTwoAlert.jsx component ✅
+- [x] UI-5: Build BenefitsPanel.jsx component ✅
+- [x] UI-6: Build ActionItems.jsx component ✅
+- [x] UI-7: Build ClientCard.jsx component ✅
+- [x] UI-8: Build Dashboard.jsx page ✅
+- [x] UI-9: Build ClientDetail.jsx page ✅
+- [x] UI-10: Build Login.jsx stub ✅
 
 ### STAGE 7 — DEMO POLISH
-- [ ] POLISH-1: Dynamic release dates in seed script
-- [ ] POLISH-2: Pre-warm Marcus Johnson analysis on startup
-- [ ] POLISH-3: Loading skeleton on ClientDetail
-- [ ] POLISH-4: Demo context banner on Dashboard
-- [ ] POLISH-5: Error boundaries on both pages
-- [ ] POLISH-6: 3 clean demo runs
+- [x] POLISH-1: Dynamic release dates in seed script ✅
+- [x] POLISH-2: Pre-warm Marcus Johnson analysis on startup ✅
+- [x] POLISH-3: Loading skeleton on ClientDetail ✅
+- [x] POLISH-4: Demo context banner on Dashboard ✅
+- [x] POLISH-5: Error boundaries on both pages ✅
+- [ ] POLISH-6: 3 clean demo runs (manual task)
 
 ### STAGE 8 — GOOGLE AUTH (LAST)
 - [ ] AUTH-1: Install auth dependencies
