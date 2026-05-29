@@ -34,4 +34,12 @@ def create_client(data: ClientCreate, db: Session = Depends(get_db)):
     db.add(client)
     db.commit()
     db.refresh(client)
+
+    # Pre-warm AI analysis so frontend loads instantly
+    try:
+        from services.benefits_service import analyze_client
+        analyze_client(client.id, db)
+    except Exception:
+        pass  # Analysis warm-up failed, but client was created successfully
+
     return client

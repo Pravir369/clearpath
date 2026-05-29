@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Layout from '../components/Layout'
 import ClientCard from '../components/ClientCard'
 import ErrorBoundary from '../components/ErrorBoundary'
+import AddClientModal from '../components/AddClientModal'
 import { api } from '../lib/api'
 
 function clientUrgency(client) {
@@ -17,6 +18,7 @@ function DashboardContent() {
   const [clients, setClients] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
     api.getClients()
@@ -46,15 +48,30 @@ function DashboardContent() {
     )
   }
 
+  const handleClientAdded = (newClient) => {
+    setClients([...clients, newClient])
+  }
+
   const sorted = [...clients]
     .map((c) => ({ client: c, urgency: clientUrgency(c) }))
     .sort((a, b) => urgencyOrder[a.urgency] - urgencyOrder[b.urgency])
 
   return (
     <>
-      <div className="bg-indigo-600 text-white text-center py-2 text-sm rounded mb-4">
-        Demo Mode — {clients.length} clients loaded
+      <AddClientModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onClientAdded={handleClientAdded} />
+
+      <div className="flex justify-between items-center mb-4">
+        <div className="bg-indigo-600 text-white text-center py-2 text-sm rounded flex-1">
+          Demo Mode — {clients.length} clients loaded
+        </div>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="ml-4 bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-md"
+        >
+          + Add New Client
+        </button>
       </div>
+
       {sorted.map(({ client, urgency }) => (
         <ClientCard key={client.id} client={client} urgency={urgency} />
       ))}
