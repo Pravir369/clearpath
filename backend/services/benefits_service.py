@@ -86,7 +86,7 @@ import os as _os
 
 def generate_intake_analysis(client, benefits: List[BenefitWindow], catch_two) -> dict:
     prompt_path = _os.path.join(_os.path.dirname(__file__), "..", "prompts", "intake_analysis.txt")
-    with open(prompt_path) as f:
+    with open(prompt_path, encoding='utf-8') as f:
         system_prompt = f.read()
 
     benefits_text = "\n".join(
@@ -121,8 +121,68 @@ Eligible benefits:
         raw = raw.strip()
         if raw.startswith("```"):
             raw = raw.split("\n", 1)[1].rsplit("```", 1)[0]
-        return _json.loads(raw)
-    except Exception:
+
+        # Try to parse as JSON
+        try:
+            return _json.loads(raw)
+        except:
+            # If not JSON, generate smart fallback based on actual client data
+
+            # Sort benefits by urgency (least days remaining first)
+            sorted_benefits = sorted(benefits, key=lambda b: b.days_remaining)
+
+            action_items = []
+
+            # High priority: catch-22 or most urgent deadline
+            if catch_two.has_catch_two:
+                action_items.append({
+                    "priority": "high",
+                    "text": f"URGENT — Resolve ID/address catch-22: Contact {catch_two.agency_name} at {catch_two.address}. Hours: {catch_two.hours}. Required docs: {', '.join(catch_two.docs_needed)}."
+                })
+            elif sorted_benefits and sorted_benefits[0].days_remaining <= 14:
+                b = sorted_benefits[0]
+                action_items.append({
+                    "priority": "high",
+                    "text": f"DEADLINE ALERT: {b.program_name} expires in {b.days_remaining} days. Schedule application visit this week or apply online if available."
+                })
+
+            # Medium priority: next urgent deadlines
+            for b in sorted_benefits[1 if (catch_two.has_catch_two or (sorted_benefits and sorted_benefits[0].days_remaining <= 14)) else 0:3]:
+                if b.days_remaining > 0:
+                    action_items.append({
+                        "priority": "medium",
+                        "text": f"Submit {b.program_name} application ({b.days_remaining} days remaining). Gather required ID and proof of release before appointment."
+                    })
+
+            # Low priority: future deadlines
+            if len(action_items) < 3:
+                future_benefits = [b for b in benefits if b.days_remaining > 21]
+                if future_benefits:
+                    action_items.append({
+                        "priority": "low",
+                        "text": f"Plan ahead: {future_benefits[0].program_name} has {future_benefits[0].days_remaining} days. Schedule after more urgent applications."
+                    })
+
+            # Ensure exactly 3 items
+            while len(action_items) < 3:
+                action_items.append({
+                    "priority": "low",
+                    "text": "Schedule follow-up meeting next week to review application status and address any barriers."
+                })
+
+            action_items = action_items[:3]
+
+            summary = f"{client.name}, released {days_since} days ago, is eligible for {len(benefits)} benefit programs. "
+            if catch_two.has_catch_two:
+                summary += f"Critical blocker: ID/address catch-22 at {catch_two.agency_name}."
+            elif sorted_benefits:
+                summary += f"Most urgent: {sorted_benefits[0].program_name} ({sorted_benefits[0].days_remaining} days remaining)."
+
+            return {
+                "action_items": action_items,
+                "intake_summary": summary,
+            }
+    except Exception as e:
         return {
             "action_items": [
                 {"priority": "high", "text": "Review benefit deadlines with client this week."},
