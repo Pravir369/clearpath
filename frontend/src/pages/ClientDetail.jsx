@@ -28,6 +28,7 @@ function ClientDetailContent() {
   const [analysis, setAnalysis] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [actionItems, setActionItems] = useState(null)
 
   const loadAnalysis = useCallback(() => {
     setLoading(true)
@@ -82,7 +83,15 @@ function ClientDetailContent() {
       </p>
       <CatchTwoAlert catchTwo={catch_two} />
       <BenefitsPanel benefits={benefits} />
-      <ActionItems actionItems={action_items} intakeSummary={intake_summary} />
+      <ActionItems
+        actionItems={actionItems || action_items}
+        intakeSummary={intake_summary}
+        clientId={id}
+        onAnalysisComplete={(newItems) => {
+          setActionItems(newItems)
+          setAnalysis({ ...analysis, action_items: newItems })
+        }}
+      />
     </>
   )
 }

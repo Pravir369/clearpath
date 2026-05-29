@@ -14,5 +14,8 @@ export const api = {
   getClient: (id) => request(`/clients/${id}`),
   createClient: (data) => request('/clients', { method: 'POST', body: JSON.stringify(data) }),
   analyzeClient: (id) => request(`/analyze/${id}`, { method: 'POST' }),
+  completeAction: (clientId, data) => request(`/analyze/${clientId}/complete-action`, { method: 'POST', body: JSON.stringify(data) }),
+  getCompletions: (clientId) => request(`/analyze/${clientId}/completions`),
+  regenerateAnalysis: (clientId) => request(`/analyze/${clientId}/regenerate`, { method: 'POST' }),
   health: () => fetch(`${BASE_URL.replace('/api', '')}/health`).then((r) => r.json()),
 }

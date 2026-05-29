@@ -1,6 +1,7 @@
 from sqlalchemy import Boolean, Column, Date, DateTime, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 from datetime import datetime, timezone
+import uuid
 
 from database import Base
 
@@ -32,3 +33,16 @@ class Client(Base):
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
 
     officer = relationship("Officer", back_populates="clients")
+    completions = relationship("ActionItemCompletion", back_populates="client")
+
+
+class ActionItemCompletion(Base):
+    __tablename__ = "action_item_completions"
+
+    id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
+    client_id = Column(String, ForeignKey("clients.id"), nullable=False)
+    action_text = Column(String, nullable=False)
+    completed_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    officer_note = Column(String, nullable=True)
+
+    client = relationship("Client", back_populates="completions")
